@@ -1,0 +1,170 @@
+CSS (style.css):
+/* Reset básico y configuración global */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    background-color: #f9f9f9; /* Un gris muy claro para el fondo */
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* Header */
+header {
+    background-color: #ffffff; /* Blanco para el header */
+    color: #2c3e50; /* Un azul oscuro/gris para el texto del header */
+    padding: 1.5rem 0;
+    text-align: center;
+    border-bottom: 1px solid #e0e0e0; /* Línea sutil de separación */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Sombra muy sutil */
+}
+
+header h1 {
+    font-weight: 700;
+    font-size: 2.2rem;
+    letter-spacing: 1px;
+}
+
+/* Main Content */
+main {
+    flex-grow: 1; /* Para que el footer se quede abajo */
+    padding: 2rem 0;
+}
+
+.cotizaciones-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Columnas responsivas */
+    gap: 25px; /* Espacio entre las tarjetas */
+}
+
+/* Tarjeta de cotización individual */
+.cotizacion-card {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0; /* Borde sutil */
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08); /* Sombra para dar profundidad */
+    overflow: hidden; /* Para que el border-radius funcione bien con el header de la tarjeta */
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.cotizacion-card:hover {
+    transform: translateY(-5px); /* Ligero efecto al pasar el mouse */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+    background-color: #f0f2f5; /* Un gris un poco más oscuro para el header de la tarjeta */
+    padding: 15px 20px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.flag {
+    font-size: 1.8rem; /* Tamaño de la bandera emoji */
+    margin-right: 12px;
+    line-height: 1; /* Ajuste para alinear mejor el emoji */
+}
+
+.card-header h2 {
+    font-size: 1.5rem;
+    font-weight: 400; /* Un poco más ligero para el título del país */
+    color: #34495e; /* Otro tono de azul/gris */
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.tipo-dolar {
+    margin-bottom: 20px; /* Espacio entre tipos de dólar */
+}
+
+.tipo-dolar:last-child {
+    margin-bottom: 0;
+}
+
+.tipo-dolar h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #555;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px dashed #ccc; /* Separador sutil para el tipo de dólar */
+}
+
+.valores p {
+    font-size: 0.95rem;
+    color: #444;
+    margin-bottom: 6px;
+    display: flex;
+    justify-content: space-between; /* Alinea "Compra/Venta" y el valor */
+}
+
+.valores p span:first-child {
+    font-weight: 400; /* "Compra:", "Venta:" */
+    color: #666;
+}
+
+.valores p span:last-child {
+    font-weight: 700; /* El valor numérico */
+    color: #27ae60; /* Verde para los valores, indica positivo/dinero */
+}
+
+/* Footer */
+footer {
+    background-color: #2c3e50; /* Mismo color que el texto del header para consistencia */
+    color: #ecf0f1; /* Un gris claro para el texto del footer */
+    text-align: center;
+    padding: 1.5rem 0;
+    margin-top: auto; /* Empuja el footer al final */
+    font-size: 0.9rem;
+}
+
+footer p {
+    margin-bottom: 0.5rem;
+}
+
+footer .disclaimer {
+    font-size: 0.8rem;
+    color: #bdc3c7; /* Un gris aún más claro para el disclaimer */
+}
+
+/* Media Queries para responsividad (opcional, pero bueno para detalles) */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 1.8rem;
+    }
+    .card-header h2 {
+        font-size: 1.3rem;
+    }
+    .flag {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        width: 95%;
+    }
+    .cotizaciones-grid {
+        grid-template-columns: 1fr; /* Una columna en móviles pequeños */
+    }
+     header h1 {
+        font-size: 1.6rem;
+    }
+}
