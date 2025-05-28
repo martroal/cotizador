@@ -1,170 +1,161 @@
-CSS (style.css):
-/* Reset básico y configuración global */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+/* ... (Estilos anteriores sin cambios) ... */
+
+/* --- Estilos para el Chat Pop-up --- */
+.chat-toggle-btn {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    background-color: #2c3e50; /* Color principal oscuro */
+    color: white;
+    border: none;
+    border-radius: 50%; /* Círculo */
+    width: 60px;
+    height: 60px;
+    font-size: 1.5rem; /* Tamaño del ícono */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    z-index: 999;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-body {
-    font-family: 'Roboto', sans-serif;
-    line-height: 1.6;
-    background-color: #f9f9f9; /* Un gris muy claro para el fondo */
-    color: #333;
-    display: flex;
+.chat-toggle-btn:hover {
+    background-color: #34495e; /* Un poco más claro al pasar el mouse */
+    transform: scale(1.1);
+}
+
+.chat-popup-container {
+    display: none; /* Oculto por defecto */
     flex-direction: column;
-    min-height: 100vh;
-}
-
-.container {
-    width: 90%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 15px;
-}
-
-/* Header */
-header {
-    background-color: #ffffff; /* Blanco para el header */
-    color: #2c3e50; /* Un azul oscuro/gris para el texto del header */
-    padding: 1.5rem 0;
-    text-align: center;
-    border-bottom: 1px solid #e0e0e0; /* Línea sutil de separación */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Sombra muy sutil */
-}
-
-header h1 {
-    font-weight: 700;
-    font-size: 2.2rem;
-    letter-spacing: 1px;
-}
-
-/* Main Content */
-main {
-    flex-grow: 1; /* Para que el footer se quede abajo */
-    padding: 2rem 0;
-}
-
-.cotizaciones-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Columnas responsivas */
-    gap: 25px; /* Espacio entre las tarjetas */
-}
-
-/* Tarjeta de cotización individual */
-.cotizacion-card {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    width: 350px; /* Ancho del chat */
+    max-height: 80vh; /* Altura máxima */
     background-color: #ffffff;
-    border: 1px solid #e0e0e0; /* Borde sutil */
-    border-radius: 8px; /* Bordes redondeados */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08); /* Sombra para dar profundidad */
-    overflow: hidden; /* Para que el border-radius funcione bien con el header de la tarjeta */
-    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    border: 1px solid #dcdcdc;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+    z-index: 1000; /* Por encima del botón de abrir */
+    overflow: hidden; /* Para que el border-radius funcione bien */
 }
 
-.cotizacion-card:hover {
-    transform: translateY(-5px); /* Ligero efecto al pasar el mouse */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-}
-
-.card-header {
-    background-color: #f0f2f5; /* Un gris un poco más oscuro para el header de la tarjeta */
-    padding: 15px 20px;
+.chat-header-popup {
+    background-color: #f0f2f5; /* Similar al header de las tarjetas */
+    color: #34495e;
+    padding: 12px 15px;
     display: flex;
+    justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid #e0e0e0;
 }
 
-.flag {
-    font-size: 1.8rem; /* Tamaño de la bandera emoji */
-    margin-right: 12px;
-    line-height: 1; /* Ajuste para alinear mejor el emoji */
+.chat-header-popup h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 700;
 }
 
-.card-header h2 {
+.chat-close-btn {
+    background: none;
+    border: none;
     font-size: 1.5rem;
-    font-weight: 400; /* Un poco más ligero para el título del país */
-    color: #34495e; /* Otro tono de azul/gris */
+    color: #888;
+    cursor: pointer;
+    padding: 0 5px;
+    line-height: 1;
+}
+.chat-close-btn:hover {
+    color: #555;
 }
 
-.card-body {
-    padding: 20px;
+.chat-messages-area {
+    flex-grow: 1; /* Ocupa el espacio disponible */
+    padding: 15px;
+    overflow-y: auto; /* Scroll si hay muchos mensajes */
+    background-color: #f9f9f9; /* Fondo ligeramente diferente para mensajes */
+    min-height: 200px; /* Altura mínima para que se vea algo */
 }
 
-.tipo-dolar {
-    margin-bottom: 20px; /* Espacio entre tipos de dólar */
+.chat-message {
+    margin-bottom: 12px;
+    padding: 8px 12px;
+    background-color: #e9ecef; /* Fondo para cada mensaje */
+    border-radius: 6px;
+    font-size: 0.9rem;
+    line-height: 1.4;
 }
 
-.tipo-dolar:last-child {
+.chat-message:last-child {
     margin-bottom: 0;
 }
 
-.tipo-dolar h3 {
-    font-size: 1.1rem;
+.message-author {
     font-weight: 700;
-    color: #555;
-    margin-bottom: 10px;
-    padding-bottom: 5px;
-    border-bottom: 1px dashed #ccc; /* Separador sutil para el tipo de dólar */
+    color: #2c3e50; /* Color principal para el autor */
+    display: block; /* Para que el texto del mensaje empiece abajo */
+    margin-bottom: 3px;
+    font-size: 0.8rem;
 }
 
-.valores p {
-    font-size: 0.95rem;
-    color: #444;
-    margin-bottom: 6px;
+.message-text {
+    color: #495057; /* Texto del mensaje */
+    margin: 0;
+    word-wrap: break-word; /* Para que palabras largas no rompan el layout */
+}
+
+.chat-input-area {
     display: flex;
-    justify-content: space-between; /* Alinea "Compra/Venta" y el valor */
+    padding: 10px 15px;
+    border-top: 1px solid #e0e0e0;
+    background-color: #f0f2f5;
 }
 
-.valores p span:first-child {
-    font-weight: 400; /* "Compra:", "Venta:" */
-    color: #666;
-}
-
-.valores p span:last-child {
-    font-weight: 700; /* El valor numérico */
-    color: #27ae60; /* Verde para los valores, indica positivo/dinero */
-}
-
-/* Footer */
-footer {
-    background-color: #2c3e50; /* Mismo color que el texto del header para consistencia */
-    color: #ecf0f1; /* Un gris claro para el texto del footer */
-    text-align: center;
-    padding: 1.5rem 0;
-    margin-top: auto; /* Empuja el footer al final */
+#chat-message-input {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px;
     font-size: 0.9rem;
 }
 
-footer p {
-    margin-bottom: 0.5rem;
+#chat-message-input:focus {
+    outline: none;
+    border-color: #27ae60; /* Verde al enfocar */
+    box-shadow: 0 0 0 2px rgba(39, 174, 96, 0.2);
 }
 
-footer .disclaimer {
-    font-size: 0.8rem;
-    color: #bdc3c7; /* Un gris aún más claro para el disclaimer */
+#send-chat-message-btn {
+    padding: 10px 15px;
+    background-color: #27ae60; /* Verde para el botón de enviar */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: background-color 0.2s ease;
 }
 
-/* Media Queries para responsividad (opcional, pero bueno para detalles) */
-@media (max-width: 768px) {
-    header h1 {
-        font-size: 1.8rem;
-    }
-    .card-header h2 {
-        font-size: 1.3rem;
-    }
-    .flag {
-        font-size: 1.5rem;
-    }
+#send-chat-message-btn:hover {
+    background-color: #229954; /* Verde más oscuro al pasar el mouse */
 }
 
+/* Ajustes para pantallas pequeñas */
 @media (max-width: 480px) {
-    .container {
-        width: 95%;
+    .chat-popup-container {
+        width: 90vw; /* Ocupar más ancho en móviles */
+        max-height: 70vh;
+        bottom: 15px;
+        right: 15px;
     }
-    .cotizaciones-grid {
-        grid-template-columns: 1fr; /* Una columna en móviles pequeños */
-    }
-     header h1 {
-        font-size: 1.6rem;
+    .chat-toggle-btn {
+        bottom: 15px;
+        right: 15px;
+        width: 50px;
+        height: 50px;
+        font-size: 1.3rem;
     }
 }
